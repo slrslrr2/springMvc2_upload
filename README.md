@@ -331,8 +331,18 @@ public class SpringUploadController {
 ```
 
 
+------------------------
+FTP접속 후 파일 업로드
 
-
-
+```java
+ftp.login(ftpUserName, ftpPassword); // 로그인
+ftp.enterLocalPassiveMode(); // 
+ftp.setFileType(FTP.BINARY_FILE_TYPE); // 2로 설정하면 파일업로드 시 한글깨짐을 방지?
+ftp.makeDirectory("/"+today); // 폴더생성
+ftp.changeWorkingDirectory("/"+today); // 해당 경로로 이동
+ftp.storeFile(fileName, file.getInputStream()); // 파일 업로드
+ftp.logout();	  
+ftp.disconnect(); // finally
+```
 
 
